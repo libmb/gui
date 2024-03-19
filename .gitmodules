@@ -1,0 +1,12 @@
+[submodule "glfw"]
+	path = submodules/glfw
+	url = https://github.com/glfw/glfw.git
+[submodule "glad"]
+	path = submodules/glad
+	url = https://github.com/Dav1dde/glad.git
+[submodule "core"]
+	path = submodules/core
+	url = https://github.com/libmb/core.git
+[submodule "real_float"]
+	path = submodules/real_float
+	url = https://github.com/libmb/real_float.git
