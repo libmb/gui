@@ -1,5 +1,5 @@
 TARGET := gui
-PHONY_TARGETS := all prelude clean
+PHONY_TARGETS := all clean
 
 SRCS := $(shell find src -type f -name \*.c)
 OBJS := $(patsubst src/%.c,tmp/obj/%.o,$(SRCS))
@@ -11,7 +11,6 @@ CFLAGS := -O
 $(PHONY_TARGETS):
 .PHONY: $(PHONY_TARGETS)
 
-prelude: external
 external:
 	sh ./init.sh
 
@@ -19,7 +18,7 @@ all: $(TARGET)
 $(TARGET): $(OBJS)
 	$(CC) $(LDFLAGS) -o $@ $^
 
-./tmp/obj/%.o: ./src/%.c prelude
+./tmp/obj/%.o: ./src/%.c external
 	mkdir -p $(@D)
 	$(CC) $(CPPFLAGS) $(CFLAGS) -c -o $@ $<
 
