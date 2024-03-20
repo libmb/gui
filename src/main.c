@@ -6,7 +6,7 @@
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 00:23:22 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2024/03/20 00:31:35 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2024/03/21 01:39:33 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 
 #include "mb_core.h"
 #include "mb_real_float.h"
+
+#include "main.h"
 
 static void	framebuffer_size_cb(GLFWwindow *window, int width, int height);
 static void	process_input(GLFWwindow *window);
@@ -51,7 +53,10 @@ static void	*init(void)
 int	main(void)
 {
 	GLFWwindow *const	window = init();
+	t_main_context		context;
 
+	if (init_context(&context))
+		exit(EXIT_FAILURE);
 	while (!glfwWindowShouldClose(window))
 	{
 		process_input(window);
@@ -60,6 +65,7 @@ int	main(void)
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
+	deinit_context(context);
 	glfwTerminate();
 	exit(EXIT_SUCCESS);
 }
