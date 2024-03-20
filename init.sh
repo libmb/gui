@@ -30,6 +30,12 @@ cp -r submodules/real_float/include/* tmp/external/include
 cp submodules/real_float/libmb_real_float.a tmp/external/lib
 make -C submodules/real_float clean
 
+# colorizer_basic
+make -C submodules/colorizer_basic
+cp -r submodules/colorizer_basic/include/* tmp/external/include
+cp submodules/colorizer_basic/libmb_colorizer_basic.a tmp/external/lib
+make -C submodules/colorizer_basic clean
+
 # compile_commands.json
 echo "[
   {

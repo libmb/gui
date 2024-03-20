@@ -10,3 +10,6 @@
 [submodule "real_float"]
 	path = submodules/real_float
 	url = https://github.com/libmb/real_float.git
+[submodule "colorizer_basic"]
+	path = submodules/colorizer_basic
+	url = https://github.com/libmb/colorizer_basic.git
