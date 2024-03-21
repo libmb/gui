@@ -6,7 +6,7 @@
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 00:41:42 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2024/03/21 01:43:39 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2024/03/22 01:31:12 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,13 @@
 #include <stddef.h>
 
 #include "glad/gl.h"
+#include "mb_core.h"
+#include "mb_real_float.h"
+#include "mb_colorizer_basic_types.h"
 
-static const char	*g_vertex_shader_source = ""
+#define COLOR_STEP 5
+
+static const char						*g_vertex_shader_source = ""
 	"#version 330 core\n"
 	"layout (location = 0) in vec3 aPos;\n"
 	"layout (location = 1) in vec2 aTexCoords;\n"
@@ -29,7 +34,7 @@ static const char	*g_vertex_shader_source = ""
 	"}\n"
 	"";
 
-static const char	*g_fragment_shader_source = ""
+static const char						*g_fragment_shader_source = ""
 	"#version 330 core\n"
 	"out vec4 FragColor;\n"
 	"\n"
@@ -42,13 +47,22 @@ static const char	*g_fragment_shader_source = ""
 	"}\n"
 	"";
 
-static const float	g_verticies[] = {
+static const float						g_verticies[] = {
 	-1.0f, -1.0f,
 	1.0f, -1.0f,
 	-1.0f, 1.0f,
 	1.0f, -1.0f,
 	-1.0f, 1.0f,
 	1.0f, 1.0f,
+};
+
+static const t_mb_colorizer_basic_node	g_nodes[] = {
+{0, {1.0f, 0.0f, 0.0f, 1.0f}},
+{COLOR_STEP, {1.0f, 1.0f, 0.0f, 1.0f}},
+{COLOR_STEP * 2, {0.0f, 1.0f, 0.0f, 1.0f}},
+{COLOR_STEP * 3, {0.0f, 1.0f, 1.0f, 1.0f}},
+{COLOR_STEP * 4, {0.0f, 0.0f, 1.0f, 1.0f}},
+{COLOR_STEP * 5, {1.0f, 0.0f, 1.0f, 1.0f}},
 };
 
 static t_err	init_program(GLuint *out)
@@ -111,12 +125,26 @@ static t_err	init_vao_and_vbo(GLuint *out_vao, GLuint *out_vbo)
 
 t_err	init_context(t_main_context *out)
 {
-	if (init_program(&out->program))
+	const t_mb_colorizer_basic_node	*nodes;
+
+	nodes = g_nodes;
+	if (mb_new(mb_real_float(), 2, 42, &out->mb))
 		return (true);
+	if (init_program(&out->program))
+	{
+		mb_free(out->mb);
+		return (true);
+	}
 	if (init_vao_and_vbo(&out->vao, &out->vbo))
 	{
+		mb_free(out->mb);
 		glDeleteProgram(out->program);
 		return (true);
 	}
+	out->width = DEFAULT_WINDOW_WIDTH;
+	out->height = DEFAULT_WINDOW_HEIGHT;
+	out->colorizer.count = 6;
+	out->colorizer.length = COLOR_STEP * 6;
+	out->colorizer.nodes = *(t_mb_colorizer_basic_node **)(void *)&nodes;
 	return (false);
 }

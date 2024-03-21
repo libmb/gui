@@ -6,7 +6,7 @@
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 00:23:22 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2024/03/21 01:39:33 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2024/03/22 01:28:14 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@
 
 #include <glad/gl.h>
 #include <GLFW/glfw3.h>
-
-#include "mb_core.h"
-#include "mb_real_float.h"
 
 #include "main.h"
 
@@ -33,7 +30,8 @@ static void	*init(void)
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	window = glfwCreateWindow(800, 600, "Mandelbrot Set Viewer", NULL, NULL);
+	window = glfwCreateWindow(DEFAULT_WINDOW_WIDTH, DEFAULT_WINDOW_HEIGHT,
+			"Mandelbrot Set Viewer", NULL, NULL);
 	if (window == NULL)
 	{
 		puts("Failed to create GLFW window");
@@ -57,11 +55,12 @@ int	main(void)
 
 	if (init_context(&context))
 		exit(EXIT_FAILURE);
+	glfwSetWindowUserPointer(window, &context);
 	while (!glfwWindowShouldClose(window))
 	{
 		process_input(window);
-		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
+		if (render(&context))
+			break ;
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
@@ -72,7 +71,10 @@ int	main(void)
 
 static void	framebuffer_size_cb(GLFWwindow *window, int width, int height)
 {
-	(void)window;
+	t_main_context *const	context = glfwGetWindowUserPointer(window);
+
+	context->width = width;
+	context->height = height;
 	glViewport(0, 0, width, height);
 }
 
