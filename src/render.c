@@ -6,7 +6,7 @@
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 23:43:48 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2024/03/23 00:32:37 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2024/03/23 00:53:18 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,10 @@ static t_err	set_pixel(
 
 static unsigned char	*generate_image(t_main_context *context)
 {
+	const size_t			row_size = (size_t)context->width * 3
+		+ (4 - (size_t)context->width * 3 % 4) % 4;
 	unsigned char *const	result
-		= malloc((size_t)context->width * (size_t)context->height * 3);
+		= malloc(row_size * (size_t)context->height);
 	size_t					i;
 	size_t					j;
 
