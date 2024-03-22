@@ -6,7 +6,7 @@
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 00:41:42 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2024/03/22 01:31:12 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2024/03/22 23:17:51 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <stddef.h>
 
 #include "glad/gl.h"
+
 #include "mb_core.h"
 #include "mb_real_float.h"
 #include "mb_colorizer_basic_types.h"
@@ -23,14 +24,13 @@
 
 static const char						*g_vertex_shader_source = ""
 	"#version 330 core\n"
-	"layout (location = 0) in vec3 aPos;\n"
-	"layout (location = 1) in vec2 aTexCoords;\n"
+	"layout (location = 0) in vec2 aPos;\n"
 	"\n"
 	"out vec2 TexCoords;\n"
 	"\n"
 	"void main() {\n"
-	"	gl_Position = vec4(aPos, 1.0);\n"
-	"	TexCoords = aTexCoords;\n"
+	"	gl_Position = vec4(aPos, 1.0, 1.0);\n"
+	"	TexCoords = (aPos + vec2(1.0, 1.0)) / 2.0;\n"
 	"}\n"
 	"";
 
