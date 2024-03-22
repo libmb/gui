@@ -6,7 +6,7 @@
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 00:41:42 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2024/03/22 23:17:51 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2024/03/23 00:19:24 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ t_err	init_context(t_main_context *out)
 	const t_mb_colorizer_basic_node	*nodes;
 
 	nodes = g_nodes;
-	if (mb_new(mb_real_float(), 2, 42, &out->mb))
+	if (mb_new(mb_real_float(), 2, MAX_ITERATION_COUNT, &out->mb))
 		return (true);
 	if (init_program(&out->program))
 	{

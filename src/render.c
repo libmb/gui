@@ -6,7 +6,7 @@
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 23:43:48 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2024/03/22 23:16:29 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2024/03/23 00:10:06 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static size_t	get_iteration_count(
 	t_mb_real	*i;
 	t_err		result;
 
-	r = mb_real_float_new((float)x * 4 / ((float)context->width - 1) - 3);
+	r = mb_real_float_new((float)x * 4 / ((float)context->width - 1) - 2);
 	if (!r)
 		return (true);
 	i = mb_real_float_new((float)y * 4 / ((float)context->height - 1) - 2);
@@ -65,6 +65,12 @@ static t_err	set_pixel(
 		= (unsigned char)(color.g * 255);
 	image[(y * (size_t)context->width + x) * 3 + 2]
 		= (unsigned char)(color.b * 255);
+	if (iteration_count == MAX_ITERATION_COUNT)
+	{
+		image[(y * (size_t)context->width + x) * 3] = 0;
+		image[(y * (size_t)context->width + x) * 3 + 1] = 0;
+		image[(y * (size_t)context->width + x) * 3 + 2] = 0;
+	}
 	return (false);
 }
 

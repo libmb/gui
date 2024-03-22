@@ -6,7 +6,7 @@
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 00:39:30 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2024/03/22 01:27:32 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2024/03/22 23:37:00 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 # define DEFAULT_WINDOW_WIDTH 800
 # define DEFAULT_WINDOW_HEIGHT 600
+# define MAX_ITERATION_COUNT 42
 
 typedef struct s_main_context
 {
