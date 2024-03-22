@@ -6,7 +6,7 @@
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 23:43:48 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2024/03/22 01:32:07 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2024/03/22 22:57:05 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ static t_err	generate_texture(t_main_context *context, GLuint *out)
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, context->width, context->height, 0,
 		GL_RGB, GL_UNSIGNED_BYTE, image);
 	free(image);
+	glGenerateMipmap(GL_TEXTURE_2D);
 	if (glGetError() != GL_NO_ERROR)
 	{
 		glDeleteTextures(1, out);
