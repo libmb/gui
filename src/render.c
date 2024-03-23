@@ -6,7 +6,7 @@
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 23:43:48 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2024/03/23 00:53:18 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2024/03/23 18:15:03 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,8 +130,8 @@ t_err	render(t_main_context *context)
 	glBindVertexArray(context->vao);
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texture);
-	glDrawArrays(GL_TRIANGLES, 0, 6);
 	glUniform1i(glGetUniformLocation(context->program, "ourTexture"), 0);
+	glDrawArrays(GL_TRIANGLES, 0, 6);
 	glDeleteTextures(1, &texture);
 	return (glGetError() != GL_NO_ERROR);
 }
