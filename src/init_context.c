@@ -6,7 +6,7 @@
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 00:41:42 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2024/03/23 00:19:24 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2024/03/23 17:48:27 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static t_err	init_program(GLuint *out)
 	bool			error;
 
 	*out = glCreateProgram();
-	error = !vertex_shader || !fragment_shader || !*out;
+	error = (!vertex_shader || !fragment_shader || !*out);
 	glShaderSource(vertex_shader, 1, &g_vertex_shader_source, NULL);
 	glCompileShader(vertex_shader);
 	glGetShaderiv(vertex_shader, GL_COMPILE_STATUS, &success);
