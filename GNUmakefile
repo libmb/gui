@@ -5,8 +5,12 @@ SRCS := $(shell find src -type f -name \*.c)
 OBJS := $(patsubst src/%.c,tmp/obj/%.o,$(SRCS))
 
 CPPFLAGS := -Iinclude -Iexternal/include -DNDEBUG
-LDFLAGS := -framework Cocoa -framework OpenGL -framework IOKit -Lexternal/lib -lglfw3 -lmb_core -lmb_real_float -lmb_colorizer_basic
+LDFLAGS := -Lexternal/lib -lglfw3 -lmb_core -lmb_real_float -lmb_colorizer_basic
 CFLAGS := -O
+
+ifeq ($(shell uname), Darwin)
+LDFLAGS += -framework Cocoa -framework OpenGL -framework IOKit
+endif
 
 $(PHONY_TARGETS):
 .PHONY: $(PHONY_TARGETS)
