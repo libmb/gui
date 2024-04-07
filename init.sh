@@ -29,5 +29,11 @@ cp -r submodules/colorizer_basic/include/* tmp/external/include
 cp submodules/colorizer_basic/libmb_colorizer_basic.a tmp/external/lib
 make -C submodules/colorizer_basic clean
 
+# gui_fps
+make -C submodules/gui_fps
+cp -r submodules/gui_fps/include/* tmp/external/include
+cp submodules/gui_fps/libmb_gui_fps.a tmp/external/lib
+make -C submodules/gui_fps clean
+
 rm -rf external
 mv tmp/external .

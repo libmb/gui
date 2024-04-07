@@ -6,7 +6,7 @@
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 00:23:22 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2024/03/22 01:28:14 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2024/04/08 00:13:40 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 
 #include <glad/gl.h>
 #include <GLFW/glfw3.h>
+
+#include "mb_gui_fps.h"
 
 #include "main.h"
 
@@ -52,19 +54,24 @@ int	main(void)
 {
 	GLFWwindow *const	window = init();
 	t_main_context		context;
+	t_mb_gui_fps		fps;
 
-	if (init_context(&context))
+	if (mb_gui_fps_init(&fps, 16667)
+		|| init_context(&context))
 		exit(EXIT_FAILURE);
 	glfwSetWindowUserPointer(window, &context);
 	while (!glfwWindowShouldClose(window))
 	{
 		process_input(window);
-		if (render(&context))
+		if (mb_gui_fps_block(&fps)
+			|| render(&context)
+			|| mb_gui_fps_mark_as_rendered(&fps))
 			break ;
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
 	deinit_context(context);
+	mb_gui_fps_finalize(fps);
 	glfwTerminate();
 	exit(EXIT_SUCCESS);
 }

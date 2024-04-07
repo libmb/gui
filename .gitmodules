@@ -13,3 +13,6 @@
 [submodule "colorizer_basic"]
 	path = submodules/colorizer_basic
 	url = https://github.com/libmb/colorizer_basic.git
+[submodule "gui_fps"]
+	path = submodules/gui_fps
+	url = https://github.com/libmb/gui_fps.git

@@ -5,7 +5,7 @@ SRCS := $(shell find src -type f -name \*.c)
 OBJS := $(patsubst src/%.c,tmp/obj/%.o,$(SRCS))
 
 CPPFLAGS := -Iinclude -Iexternal/include -DNDEBUG
-LDFLAGS := -Lexternal/lib -lglfw3 -lmb_core -lmb_real_float -lmb_colorizer_basic
+LDFLAGS := -Lexternal/lib -lglfw3 -lmb_core -lmb_real_float -lmb_colorizer_basic -lmb_gui_fps
 CFLAGS := -O
 
 ifeq ($(shell uname), Darwin)
