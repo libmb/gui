@@ -6,7 +6,7 @@
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 00:39:30 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2024/03/22 23:37:00 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2024/04/08 02:46:15 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ typedef struct s_main_context
 	GLuint					vbo;
 }	t_main_context;
 
-t_err	init_context(t_main_context *out);
-void	deinit_context(t_main_context context);
+t_mb_err	init_context(t_main_context *out);
+void		deinit_context(t_main_context context);
 
-t_err	render(t_main_context *context);
+t_mb_err	render(t_main_context *context);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 23:43:48 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2024/03/23 18:15:03 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2024/04/08 02:46:50 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static size_t	get_iteration_count(
 {
 	t_mb_real	*r;
 	t_mb_real	*i;
-	t_err		result;
+	t_mb_err	result;
 
 	r = mb_real_float_new((float)x * 4 / ((float)context->width - 1) - 2);
 	if (!r)
@@ -46,7 +46,7 @@ static size_t	get_iteration_count(
 	return (result);
 }
 
-static t_err	set_pixel(
+static t_mb_err	set_pixel(
 	t_main_context *context,
 	size_t y,
 	size_t x,
@@ -100,7 +100,7 @@ static unsigned char	*generate_image(t_main_context *context)
 	return (result);
 }
 
-static t_err	generate_texture(t_main_context *context, GLuint *out)
+static t_mb_err	generate_texture(t_main_context *context, GLuint *out)
 {
 	unsigned char *const	image = generate_image(context);
 
@@ -120,7 +120,7 @@ static t_err	generate_texture(t_main_context *context, GLuint *out)
 	return (false);
 }
 
-t_err	render(t_main_context *context)
+t_mb_err	render(t_main_context *context)
 {
 	GLuint	texture;
 

@@ -65,7 +65,7 @@ static const t_mb_colorizer_basic_node	g_nodes[] = {
 {COLOR_STEP * 5, {1.0f, 0.0f, 1.0f, 1.0f}},
 };
 
-static t_err	init_program(GLuint *out)
+static t_mb_err	init_program(GLuint *out)
 {
 	const GLuint	vertex_shader = glCreateShader(GL_VERTEX_SHADER);
 	const GLuint	fragment_shader = glCreateShader(GL_FRAGMENT_SHADER);
@@ -94,7 +94,7 @@ static t_err	init_program(GLuint *out)
 	return (error);
 }
 
-static t_err	init_vao_and_vbo(GLuint *out_vao, GLuint *out_vbo)
+static t_mb_err	init_vao_and_vbo(GLuint *out_vao, GLuint *out_vbo)
 {
 	bool	error;
 
@@ -123,7 +123,7 @@ static t_err	init_vao_and_vbo(GLuint *out_vao, GLuint *out_vbo)
 	return (error);
 }
 
-t_err	init_context(t_main_context *out)
+t_mb_err	init_context(t_main_context *out)
 {
 	const t_mb_colorizer_basic_node	*nodes;
 
